@@ -41,10 +41,10 @@ export const Calendar: React.FC<CalendarProps> = ({ posts, onAddPost, specialDay
   const days = eachDayOfInterval({ start: startDate, end: endDate });
   const dayLabels = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
-  const dayBaseClass = "relative flex flex-col h-36 rounded-xl border-2 p-2 transition-all duration-300 overflow-hidden";
-  const currentMonthClass = "bg-white border-transparent hover:border-blue-300 hover:shadow-md cursor-pointer";
-  const otherMonthClass = "bg-slate-100/80 border-transparent text-slate-400";
-  const todayClass = "border-blue-600 bg-blue-50 shadow-lg";
+  const dayBaseClass = "relative flex flex-col h-36 rounded-xl p-2 transition-all duration-300 overflow-hidden";
+  const currentMonthClass = "bg-white border-2 border-transparent hover:border-blue-300 hover:shadow-md cursor-pointer";
+  const otherMonthClass = "bg-slate-100/80 border-2 border-transparent text-slate-400";
+  const todayClass = "border-4 border-blue-500 bg-blue-100 shadow-xl shadow-blue-400/50";
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setCursorPosition({ x: e.clientX, y: e.clientY });
@@ -117,13 +117,18 @@ export const Calendar: React.FC<CalendarProps> = ({ posts, onAddPost, specialDay
                 onMouseLeave={isCurrentMonth && hasUpload ? handleDayMouseLeave : undefined}
                 className={dayClasses}
               >
-                  <time dateTime={dateKey} className={`text-lg font-semibold ${isToday(day) && isCurrentMonth ? 'text-blue-600' : isCurrentMonth ? 'text-slate-700' : 'text-slate-400'}`}>
+                  <time dateTime={dateKey} className={`text-2xl font-semibold ${isToday(day) && isCurrentMonth ? 'text-blue-700 !font-extrabold' : isCurrentMonth ? 'text-slate-700' : 'text-slate-400'}`}>
                     {format(day, 'd')}
                   </time>
                   
                   {isCurrentMonth && (
-                      <button onClick={(e) => { e.stopPropagation(); onAddPost(day); }} className="absolute top-2 right-2 p-1.5 rounded-full text-slate-400 hover:bg-slate-200/70 hover:text-blue-500 transition-all duration-300" title="Add Post">
-                          <Plus className="h-4 w-4" />
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); onAddPost(day); }} 
+                        className="absolute top-2 right-2 w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-300" 
+                        title="Add Post"
+                        aria-label={`Add post for ${format(day, 'MMMM d')}`}
+                      >
+                          <Plus className="h-5 w-5 text-white" />
                       </button>
                   )}
 
