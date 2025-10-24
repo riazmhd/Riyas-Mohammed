@@ -28,14 +28,14 @@ export const NotificationToast: React.FC<NotificationToastProps> = ({ notificati
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsExiting(true);
-    }, 5000); // Auto-dismiss after 5 seconds
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
     if (isExiting) {
-      const timer = setTimeout(() => onDismiss(id), 400); // Corresponds to animation duration
+      const timer = setTimeout(() => onDismiss(id), 400);
       return () => clearTimeout(timer);
     }
   }, [isExiting, onDismiss, id]);

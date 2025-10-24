@@ -10,7 +10,7 @@ const NotificationBell: React.FC<NotificationBellProps> = ({ count, onClick }) =
   return (
     <button 
       onClick={onClick}
-      className="fixed top-6 right-6 z-[60] h-12 w-12 rounded-full bg-white/80 backdrop-blur-md shadow-lg flex items-center justify-center text-slate-700 hover:text-blue-600 transition-colors duration-300 group" 
+      className="fixed top-6 right-6 z-[60] h-12 w-12 rounded-full bg-white/50 backdrop-blur-lg border border-white/40 shadow-lg flex items-center justify-center text-slate-700 hover:text-blue-600 transition-colors duration-300 group" 
       aria-label="Show new notification"
     >
       <Bell className="h-6 w-6" />
