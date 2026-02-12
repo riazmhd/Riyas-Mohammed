@@ -42,3 +42,53 @@ export interface ActivityLog {
   user: string;
   action: string;
 }
+
+// DPS Expo Referral Program Types
+export interface ReferralEmployee {
+  id: string;
+  code: string; // e.g. DPS-AHMED-01
+  name: string;
+  email: string;
+  department: string;
+  avatarUrl: string;
+  joinedDate: string; // ISO date
+}
+
+export interface ReferralRecord {
+  id: string;
+  employeeCode: string;
+  timestamp: string; // ISO date
+  source: 'whatsapp' | 'email' | 'linkedin' | 'instagram' | 'direct' | 'other';
+  followerEstimate: boolean; // whether this click likely converted
+}
+
+export interface ReferralStats {
+  employeeCode: string;
+  employeeName: string;
+  linksShared: number;
+  linkClicks: number;
+  estimatedFollowers: number;
+  lastWeekFollowers: number;
+  thisMonthFollowers: number;
+  engagementRate: number;
+  rank: number;
+}
+
+export type RewardTier = 'weekly' | 'monthly' | 'quarterly';
+
+export interface RewardPrize {
+  tier: RewardTier;
+  position: number;
+  label: string;
+  prize: string;
+  amount: number; // AED
+}
+
+export interface ReferralProgramRules {
+  pointsPerFollower: number;
+  pointsPerEngagedFollower: number;
+  prohibited: string[];
+  encouraged: string[];
+}
+
+export type ReferralView = 'dashboard' | 'landing' | 'kit';

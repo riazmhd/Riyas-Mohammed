@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckSquare, MessageSquare, List, Search, Grid3x3 } from 'lucide-react';
+import { CheckSquare, MessageSquare, List, Search, Grid3x3, Users } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { ActiveView } from '../App';
 
@@ -14,6 +14,7 @@ const navItems: { view: ActiveView; label: string; icon: React.FC<{className?: s
     { view: 'chat', label: 'Chat', icon: MessageSquare },
     { view: 'activity', label: 'Library', icon: List },
     { view: 'apps', label: 'Apps', icon: Grid3x3 },
+    { view: 'referral', label: 'Referral', icon: Users },
 ];
 
 

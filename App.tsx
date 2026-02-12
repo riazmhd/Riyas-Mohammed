@@ -17,6 +17,8 @@ import { UserProfile } from './components/UserProfile';
 import { ActivityLogSidebar } from './components/ActivityLogSidebar';
 import { ConfettiAnimation } from './components/ConfettiAnimation';
 import { AppsSidebar } from './components/AppsSidebar';
+import ReferralProgram from './components/ReferralProgram';
+import { ReferralProvider } from './context/ReferralContext';
 
 const sampleNotifications: Omit<NotificationType, 'id'>[] = [
   { type: 'success', title: 'Upload Complete', message: 'Your file "launch-creative.jpg" has been saved.' },
@@ -27,7 +29,7 @@ const sampleNotifications: Omit<NotificationType, 'id'>[] = [
 
 let notificationCycle = 0;
 
-export type ActiveView = 'chat' | 'activity' | 'uploads' | 'apps';
+export type ActiveView = 'chat' | 'activity' | 'uploads' | 'apps' | 'referral';
 
 const AppContent: React.FC = () => {
   const { user, logActivity, history } = useAuth();
@@ -151,16 +153,24 @@ const AppContent: React.FC = () => {
           <Marquee messages={marqueeSuggestions} />
         </div>
         <main className="container mx-auto p-4 pt-16 pb-24">
-          <header className="text-center my-8">
-            <h1 className="text-5xl font-extrabold text-slate-800 tracking-tight">H&S Content Hub</h1>
-            <p className="mt-2 text-lg text-slate-600">Your central dashboard for social media management.</p>
-          </header>
-          <Calendar 
-            posts={posts} 
-            onAddPost={handleAddPost}
-            specialDays={SPECIAL_DAYS} 
-            onDayClick={handleDayClick}
-          />
+          {activeView === 'referral' ? (
+            <ReferralProvider>
+              <ReferralProgram />
+            </ReferralProvider>
+          ) : (
+            <>
+              <header className="text-center my-8">
+                <h1 className="text-5xl font-extrabold text-slate-800 tracking-tight">H&S Content Hub</h1>
+                <p className="mt-2 text-lg text-slate-600">Your central dashboard for social media management.</p>
+              </header>
+              <Calendar
+                posts={posts}
+                onAddPost={handleAddPost}
+                specialDays={SPECIAL_DAYS}
+                onDayClick={handleDayClick}
+              />
+            </>
+          )}
         </main>
       </div>
       
